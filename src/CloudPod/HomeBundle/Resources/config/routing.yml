@@ -1,0 +1,7 @@
+cloud_pod_home_sample:
+    pattern:  /hello/{name}
+    defaults: { _controller: CloudPodHomeBundle:Default:index }
+
+cloud_pod_homepage:
+    pattern:  /home
+    defaults: { _controller: CloudPodHomeBundle:Home:Home }

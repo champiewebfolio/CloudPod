@@ -1,0 +1,5 @@
+services:
+    cloudpod.twig.twig_extension:
+        class: CloudPod\ClassroomBundle\Twig\FormatSizeTwigExtension
+        tags:
+            - { name: twig.extension }

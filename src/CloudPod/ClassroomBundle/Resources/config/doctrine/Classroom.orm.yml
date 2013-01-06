@@ -1,0 +1,89 @@
+# src/CloudPod/ClassroomBundle/Resources/config/doctrine/Classroom.orm.yml
+CloudPod\ClassroomBundle\Entity\Classroom:
+  type:  entity
+  repositoryClass: CloudPod\ClassroomBundle\Entity\ClassroomRepository
+  table: reg_classroom
+  id:
+    classID:
+      column: class_id
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    classKey:
+      column: class_key
+      type: string
+      length: 50
+      unique: true
+      nullable: false
+    classKeySalt:
+      column: class_key_salt
+      type: string
+      length: 255
+      unique: true
+      nullable: false
+    className:
+      column: class_name
+      type: string
+      length: 255
+      nullable: false
+    classDesc:
+      column: class_description
+      type: text
+    classCreatedAt:
+      column: created_At
+      type: datetime
+  manyToOne:
+    classCreatedBy:
+      targetEntity: CloudPod\UserBundle\Entity\User
+      joinColumn:
+        name: fk_created_by
+        nullable: false
+        referencedColumnName: user_id
+  manyToMany:
+    classUsers:
+      targetEntity: CloudPod\UserBundle\Entity\User
+      mappedBy: userClassrooms
+    classLesson:
+      targetEntity: CloudPod\ClassroomBundle\Entity\Lessons
+      inversedBy: lessonClass
+      joinTable:
+        name: list_classroom_lessons
+        joinColumns:
+          fk_class_id:
+            referencedColumnName: class_id
+        inverseJoinColumns:
+          fk_lesson_id:
+            referencedColumnName: lesson_id
+    classAnnouncement:
+      targetEntity: CloudPod\ClassroomBundle\Entity\Announcements
+      joinTable:
+        name: list_class_announcements
+        joinColumns:
+          classID:
+            referencedColumnName: class_id
+        inverseJoinColumns:
+          announcementID:
+            referencedColumnName: announcement_id
+            unique: true
+    resources:
+      targetEntity: CloudPod\ClassroomBundle\Entity\ClassResources
+      joinTable:
+        name: list_class_resources
+        joinColumns:
+          classID:
+            referencedColumnName: class_id
+        inverseJoinColumns:
+          resourceID:
+            referencedColumnName: resource_id
+            unique: true
+    submissions:
+      targetEntity: CloudPod\ClassroomBundle\Entity\ClassSubmissions
+      joinTable:
+        name: list_class_submissions
+        joinColumns:
+          classID:
+            referencedColumnName: class_id
+        inverseJoinColumns:
+          submissionID:
+            referencedColumnName: file_submission_id
+            unique: true

@@ -1,0 +1,17 @@
+{% block content %}
+<style type="text/css">
+
+
+</style>
+<form action="{{ path('class_submit', {'classID' : app.session.get('classroomActive') }) }}" method="post"
+{{ form_enctype(form) }}>
+
+{# {{ form_rest(form)}}#}
+  {{ form_rest(form)}}
+  {{ form_rest(form)}}
+
+<input type="submit" />
+</form>
+
+{{ tinymce_init() }}
+{% endblock %}

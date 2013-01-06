@@ -1,0 +1,16 @@
+cloud_pod_home:
+    resource: "@CloudPodHomeBundle/Resources/config/routing.yml"
+    prefix:   /
+
+cloud_pod_classroom:
+    resource: "@CloudPodClassroomBundle/Resources/config/routing.yml"
+    prefix:   /
+
+cloud_pod_user:
+    resource: "@CloudPodUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+# Internal routing configuration to handle ESI
+#_internal:
+#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#    prefix:   /_internal

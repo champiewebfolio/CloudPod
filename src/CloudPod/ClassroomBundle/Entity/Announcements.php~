@@ -1,0 +1,35 @@
+<?php
+namespace CloudPod\ClassroomBundle\Entity;
+//use Doctrine\Common\Collections\ArrayCollection;
+
+class Announcements
+{
+
+    // @var auto integer
+    protected $announcementID;
+
+	// @var string
+	protected $announcementTitle;
+
+	// @var text
+	protected $announcementContent;
+
+	// @var datetime
+	protected $announcementCreatedAt;
+
+	//fk class id
+	protected $announcementClass;
+
+    /**
+     * Constructor
+    */
+    public function __construct()
+    {
+        date_default_timezone_set('Asia/Manila');
+        $this->announcementCreatedAt = new \DateTime("now");
+      //  $this->announcementClass = new ArrayCollection();
+    }
+    
+
+
+}

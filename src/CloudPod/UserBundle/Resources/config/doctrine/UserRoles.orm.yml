@@ -1,0 +1,20 @@
+# src/CloudPod/UserBundle/Resources/config/doctrine/UserRoles.orm.yml
+CloudPod\UserBundle\Entity\UserRoles:
+  type:  entity
+  table: role_permissions
+  id:
+    roleID:
+      column: role_id
+      type: integer
+      generator: { strategy: NONE }
+  fields:
+    role:
+      column: role
+      type: string
+      length: 255
+      unique: true
+      nullable: false
+  oneToMany:
+    users:
+      targetEntity: User
+      mappedBy: userRole

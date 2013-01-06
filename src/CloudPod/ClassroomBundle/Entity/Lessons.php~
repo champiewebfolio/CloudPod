@@ -1,0 +1,37 @@
+<?php
+namespace CloudPod\ClassroomBundle\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
+class Lessons
+{
+
+    // @var auto integer
+    protected $lessonID;
+
+	// @var string
+	protected $lessonTitle;
+
+	// @var text
+	protected $lessonDesc;
+
+	// @var text
+	protected $lessonContent;
+
+	// @var datetime
+	protected $lessonCreatedAt;
+
+	// @var string
+	protected $lessonClass;
+
+    protected $lessonFileID;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->lessonClass = new ArrayCollection();
+        date_default_timezone_set('Asia/Manila');
+        $this->lessonCreatedAt = new \DateTime("now");
+    }
+    
+   
+}

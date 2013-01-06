@@ -1,0 +1,21 @@
+# src/CloudPod/ClassroomBundle/Resources/config/doctrine/Announcements.orm.yml
+CloudPod\ClassroomBundle\Entity\Announcements:
+  type:  entity
+  table: class_announcements
+  id:
+    announcementID:
+      column: announcement_id
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    announcementTitle:
+      column: announcement_title
+      type: string
+      length: 255
+      nullable: false
+    announcementContent:
+      column: announcement_content
+      type: text
+    announcementCreatedAt:
+      column: announcement_created_At
+      type: datetime

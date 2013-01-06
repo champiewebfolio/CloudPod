@@ -1,0 +1,14 @@
+{% block content %}
+
+<h1> THIS IS HOME PAGE </h1>
+{% if app.session.has('username') %}
+Welcome {{ app.session.get('username') }} <br/>
+<a href="{{ path('_user_profile', {'uname': app.session.get('username') })}}"> Profile </a>
+
+{% else %}
+
+LOGIN!
+{% endif %}
+
+
+{% endblock %}

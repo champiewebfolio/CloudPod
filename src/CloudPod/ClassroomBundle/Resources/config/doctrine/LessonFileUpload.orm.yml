@@ -1,0 +1,33 @@
+# src/CloudPod/ClassroomBundle/Resources/config/doctrine/LessonFileUploads.orm.yml
+CloudPod\ClassroomBundle\Entity\LessonFileUpload:
+  type:  entity
+  table: lesson_file_uploads
+  id:
+    fileID:
+      column: file_id
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    name:
+      column: file_name
+      type: string
+      length: 255
+      nullable: false
+    path:
+      column: file_path
+      type: text
+    mimeType:
+      column: mime_type
+      type: text
+    size:
+      column: file_size
+      type: integer
+    dynamicLoc:
+      column: file_dir
+      type: integer
+  lifecycleCallbacks:
+    prePersist: [ preUpload ]
+    postPersist: [ upload ]
+    preUpdate: [ preUpload ]
+    postUpdate: [ upload ]
+    postRemove: [ removeUpload ]

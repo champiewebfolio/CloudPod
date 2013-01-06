@@ -1,0 +1,51 @@
+cloud_pod_classroom_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: CloudPodClassroomBundle:Default:index }
+
+classroom_register:
+    pattern:  /register_class
+    defaults: { _controller: CloudPodClassroomBundle:Classroom:registerClass }
+
+student_classroom_page:
+    pattern:  /student/classroom/{classID}
+    defaults: { _controller: CloudPodClassroomBundle:Classroom:StudentClassroom }
+
+lecturer_classroom_page:
+    pattern:  /lecturer/classroom/{classID}
+    defaults: { _controller: CloudPodClassroomBundle:Classroom:LecturerClassroom }
+
+lecturer_add_announcement:
+    pattern:  /lecturer/classroom/{classID}/create_announcement
+    defaults: { _controller: CloudPodClassroomBundle:Announcement:createAnnouncement }
+
+lecturer_create_lesson:
+    pattern:  /lecturer/classroom/{classID}/create_lesson
+    defaults: { _controller: CloudPodClassroomBundle:Lesson:createLesson }
+
+student_display_lesson:
+    pattern:  /student/classroom/{classID}/lesson/{lessonID}
+    defaults: { _controller: CloudPodClassroomBundle:Lesson:displayLesson }
+
+lecturer_display_lesson:
+    pattern:  /lecturer/classroom/{classID}/lesson/{lessonID}
+    defaults: { _controller: CloudPodClassroomBundle:Lesson:displayLesson }
+
+set_collaboration_url:
+    pattern:  /collaboration
+    defaults: { _controller: CloudPodClassroomBundle:Classroom:Collaboration }
+
+download:
+    pattern:  /download/{param}/{param2}
+    defaults: { _controller: CloudPodClassroomBundle:Lesson:Download, param2: '' }
+
+view_resources:
+    pattern:  /classroom/view_resources/
+    defaults: { _controller: CloudPodClassroomBundle:Classroom:ClassroomResource }
+
+upload_resource:
+    pattern:  /upload_resource
+    defaults: { _controller: CloudPodClassroomBundle:Classroom:AddClassResource }
+
+class_submit:
+    pattern:  /classroom/{classID}/submit
+    defaults: { _controller: CloudPodClassroomBundle:Classroom:ClassSubmitFile }

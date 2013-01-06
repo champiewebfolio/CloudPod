@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>REDIRECT</title>
+        <meta http-equiv="Refresh" content="4;url={{ path('lecturer_classroom_page', {'classID': app.session.get('classroomActive')}) }}" />
+    </head>
+    <body>
+      {% for flashMessage in app.session.flashbag.get('notice') %}
+    <div class="flash-notice">
+      <strong>  {{ flashMessage }} </strong>
+
+      Redirecting to classroom...
+    </div>
+{% endfor %}
+        
+    </body>
+</html>

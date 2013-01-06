@@ -1,0 +1,70 @@
+# src/CloudPod/UserBundle/Resources/config/doctrine/User.orm.yml
+CloudPod\UserBundle\Entity\User:
+  type:  entity
+  table: reg_user
+  id:
+    userID:
+      column: user_id
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    userName:
+      column: username
+      type: string
+      length: 255
+      unique: true
+      nullable: false
+    salt:
+      column: salt
+      type: string
+      length: 255
+      nullable: false
+    password:
+      column: password
+      type: string
+      length: 255
+      nullable: false
+    email:
+      column: email
+      type: string
+      length: 255
+      nullable: false
+    isActive:
+      column: is_Active
+      type: boolean
+    confirmationCode:
+      column: confirmation_code
+      type: string
+      length: 255
+      nullable: false
+    createdAt:
+      column: created_At
+      type: datetime
+  manyToOne:
+    userRole:
+      targetEntity: UserRoles
+      inversedBy: users
+      joinColumn:
+        name: fk_role_id
+        nullable: false
+        referencedColumnName: role_id
+  oneToOne:
+    profileID:
+      targetEntity: UserProfile
+      inversedBy: profileuser
+      joinColumn:
+        name: fk_profile_id
+        nullable: false
+        referencedColumnName: profile_id
+  manyToMany:
+    userClassrooms:
+      targetEntity: CloudPod\ClassroomBundle\Entity\Classroom
+      inversedBy: classUsers
+      joinTable:
+        name: classroom_users
+        joinColumns:
+          fk_user_id:
+            referencedColumnName: user_id
+        inverseJoinColumns:
+          fk_class_id:
+            referencedColumnName: class_id

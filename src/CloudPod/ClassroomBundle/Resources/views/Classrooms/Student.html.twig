@@ -1,0 +1,47 @@
+{#
+
+use this for dev ennvironment#}
+ {% extends "CloudPodUserBundle::layout.html.twig" %}
+{% block title %}
+Classroom
+{% endblock %}
+ 
+{% block content %}
+
+<br>
+<div style="color:blue; font-size:16px; font-weight:bold;">Welcome {{ app.user.username }} to {{ classroom.className }} class</div><br/>
+Class Description : {{ classroom.classDesc }}
+
+<br/><br/>
+Classmates: <br/>
+	{% for user in classuser %}
+     	  
+<a href="{{ path('_user_profile', {'uname': user.userName}) }}">
+{{ user.userName }}</a>    
+ <br/>
+    {% endfor %}      
+
+	{% for announcement in announcements %}
+     	  
+{{ announcement.announcementTitle }} 
+ <br/>
+ {{ announcement.announcementContent | raw }}
+    {% endfor %}    
+
+ {% for lesson in lessons %}
+ Title : <a href="{{ path('student_display_lesson', {'lessonID' : lesson.lessonID , 'classID' : classid } ) }}"> {{ lesson.lessonTitle }} </a>- {{ lesson.lessonDesc }} 
+ 
+ <br/>
+ 
+ <br/>
+    {% endfor %}   
+<br/>
+
+<a href="{{ path('view_resources') }}"> Resources </a>
+<br/>
+
+<a href="{{ path('class_submit', {'classID' : classid }) }}"> Submissions </a>
+
+</ul>
+
+{% endblock %}

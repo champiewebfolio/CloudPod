@@ -1,0 +1,29 @@
+cloud_pod_user_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: CloudPodUserBundle:Default:index }
+
+_register:
+    pattern:  /register
+    defaults: { _controller: CloudPodUserBundle:Registration:register }
+
+_confirm:
+    pattern:  /confirmation/{confirm}
+    defaults: { _controller: CloudPodUserBundle:Registration:confirmation }
+
+_user_profile:
+    pattern:  profile/{uname}
+    defaults: { _controller: CloudPodUserBundle:User:profile }
+
+_user_profile_enroll:
+    pattern:  /enroll
+    defaults: { _controller: CloudPodUserBundle:User:enrollClass }
+
+_security_login:
+    pattern:  /login
+    defaults: { _controller: CloudPodUserBundle:Security:login }
+
+_security_check:
+    pattern:  /login_check
+
+_security_logout:
+    pattern:  /logout

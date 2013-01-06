@@ -1,0 +1,33 @@
+# src/CloudPod/ClassroomBundle/Resources/config/doctrine/ClassResources.orm.yml
+CloudPod\ClassroomBundle\Entity\ClassResources:
+  type:  entity
+  table: class_resources
+  id:
+    resourceID:
+      column: resource_id
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    name:
+      column: resource_name
+      type: string
+      length: 255
+      nullable: false
+    path:
+      column: resource_path
+      type: text
+    mimeType:
+      column: resource_mime_type
+      type: text
+    size:
+      column: resource_size
+      type: integer
+    dynamicLoc:
+      column: resource_dir
+      type: integer
+  lifecycleCallbacks:
+    prePersist: [ preUpload ]
+    postPersist: [ upload ]
+    preUpdate: [ preUpload ]
+    postUpdate: [ upload ]
+    postRemove: [ removeUpload ]

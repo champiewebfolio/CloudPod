@@ -1,0 +1,7 @@
+{% block content %}
+
+<form action="{{ path('_register') }}" method="post" {{ form_enctype(form) }}>
+{{ form_rest(form)}}
+<input type="submit" />
+</form>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% block content %}
+<style type="text/css">
+
+
+</style>
+<form action="{{ path('lecturer_create_lesson', {'classID': classid }) }}" method="post"
+{{ form_enctype(fileform) }}>
+
+{# {{ form_rest(form)}}#}
+  {{ form_rest(fileform)}}
+  {{ form_rest(form)}}
+
+<input type="submit" />
+</form>
+
+{{ tinymce_init() }}
+{% endblock %}

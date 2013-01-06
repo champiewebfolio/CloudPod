@@ -1,0 +1,7 @@
+parameters:
+#    cloud_pod_home.example.class: CloudPod\HomeBundle\Example
+
+services:
+#    cloud_pod_home.example:
+#        class: %cloud_pod_home.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

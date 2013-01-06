@@ -1,0 +1,30 @@
+<?php
+namespace CloudPod\UserBundle\Entity;
+class UserProfile
+{
+
+	// @var integer fk_user_id - mapped
+	protected $userProfileID;
+
+     // @var country
+    protected $profileuser;
+
+	// @var string
+	protected $firstName;
+
+	// @var string
+	protected $lastName;
+
+	// @var integer
+	protected $age;
+
+	// @var string
+	protected $school;
+
+    // @var country
+    protected $country;
+
+
+    
+
+}

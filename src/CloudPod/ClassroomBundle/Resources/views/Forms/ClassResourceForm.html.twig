@@ -1,0 +1,13 @@
+{% block content %}
+
+<form action="{{ path('upload_resource') }}" method="post"
+{{ form_enctype(resourceform) }}>
+
+{# {{ form_rest(form)}}#}
+  {{ form_rest(resourceform)}}
+  {{ form_rest(resourceform)}}
+
+<input type="submit" />
+</form>
+
+{% endblock %}

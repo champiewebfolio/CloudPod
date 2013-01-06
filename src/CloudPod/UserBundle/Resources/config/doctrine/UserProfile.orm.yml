@@ -1,0 +1,40 @@
+# src/CloudPod/UserBundle/Resources/config/doctrine/UserProfile.orm.yml
+CloudPod\UserBundle\Entity\UserProfile:
+  type:  entity
+  repositoryClass: CloudPod\UserBundle\Entity\UserProfileRepository
+  table: users_profile
+  id:
+    userProfileID:
+      column: profile_id
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    firstName:
+      column: first_name
+      type: string
+      length: 255
+      unique: true
+      nullable: false
+    lastName:
+      column: last_name
+      type: string
+      length: 255
+      nullable: false
+    age:
+      column: age
+      type: integer
+      nullable: false
+    school:
+      column: school
+      type: string
+      length: 255
+      nullable: false
+    country:
+      column: country
+      type: string
+      length: 25
+      nullable: false
+  oneToOne:
+    profileuser:
+      targetEntity: User
+      mappedBy: profileID

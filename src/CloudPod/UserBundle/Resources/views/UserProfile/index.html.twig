@@ -1,0 +1,90 @@
+{#
+
+use this for dev ennvironment#}
+ {% extends "CloudPodUserBundle::layout.html.twig" %}
+{% block title %}
+    User Profile
+{% endblock %}
+ 
+{% block content %}
+
+
+    <h2>
+       {{ name }} PROFILE
+    </h2>
+   
+    <br>
+    {% for user in userprofile %}
+      Name :{{ user.firstName}} {{ user.lastName}} 
+      <br/>
+      Age :{{ user.age}}
+      <br/>
+      School :{{ user.school}}
+      <br/>
+      Country :{{ user.country}}
+
+            {% endfor %}
+<br/><br/>
+
+<strong>  Class enrolled : </strong><br/>  
+{% for classroom in userclass %}
+    {% if is_granted('ROLE_USER') %}
+
+     <a href="{{ path('student_classroom_page', {'classID': classroom.classID()}) }}">
+     {{ classroom.className }}  </a> - {{ classroom.classDesc }}
+
+     <br/>
+    {% endif %} 
+
+      {% if is_granted('ROLE_ADMIN') %}
+
+     <a href="{{ path('lecturer_classroom_page', {'classID': classroom.classID()}) }}">
+     {{ classroom.className }}  </a> - {{ classroom.classDesc }}
+
+     <br/>
+    {% endif %}
+
+     <br/>
+
+{% endfor %}
+<br/>
+
+ {# checks user is logged through session #}
+ {% if app.session.has('username') %} {# default to true#}
+{# checks if the user has session value same with the profile name
+ true -> user owns the profile #}
+    {% if app.session.get('username') == name %} 
+      {% if is_granted('ROLE_USER') %}
+        <strong>Enroll in Class</strong>
+      <form action="{{ path('_user_profile_enroll') }}" method="post" {{ form_enctype(form) }}>
+      {{ form_rest(form)}}
+      <input type="submit" name="Enroll" />
+</form>
+      {% endif %}
+
+      {% if is_granted('ROLE_ADMIN') %}
+       <a href="{{ path('classroom_register') }}"> Create class</a>
+    {% endif %}
+
+  {% endif %}
+    {% endif %}
+<br/>
+<br/>
+
+
+{% if app.session.hasFlash('notice') %}
+    <div class="flash-notice">
+        {{ app.session.flash('notice') }}
+    </div>
+ {% endif %}
+    <ul>
+   
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <li>
+                            <a href="{{ path('_security_logout') }}">
+                                Logout
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+{% endblock %}

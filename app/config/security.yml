@@ -1,0 +1,30 @@
+security:
+    encoders:
+        CloudPod\UserBundle\Entity\User:
+            algorithm: sha512
+            encode-as-base64: true
+            iterations: 10
+
+    providers:
+        main:
+            entity: { class: CloudPodUserBundle:User, property: userName }
+
+    firewalls:
+        main:
+            pattern: /.*
+            form_login:
+                check_path: /login_check
+                login_path: /login
+                always_use_default_target_path: false
+                default_target_path: /home
+            logout: true
+            security: true
+            anonymous: true
+
+    access_control:
+        - { path: /register_class, role: ROLE_ADMIN }
+        - { path: /register/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /enroll, role: ROLE_USER }
+        - { path: /student/.*, role: ROLE_USER }
+        - { path: /lecturer/.*, role: ROLE_ADMIN }
+        - { path: /.*, role: IS_AUTHENTICATED_ANONYMOUSLY }

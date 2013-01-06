@@ -1,0 +1,70 @@
+{#
+
+use this for dev ennvironment#}
+ {% extends "CloudPodUserBundle::layout.html.twig" %}
+{% block title %}
+Lecturer Classroom
+{% endblock %}
+ 
+{% block content %}
+{{ app.session.get('classroomActive') }}
+
+    <br>
+<div style="color:blue; font-size:16px; font-weight:bold;">Welcome teacher {{ app.user.username }} to {{ classroom.className }} class</div><br/>
+Class Description : {{ classroom.classDesc }}
+
+<br/><br/>
+Classmates: <br/>
+	{% for user in classuser %}
+     	  
+<a href="{{ path('_user_profile', {'uname': user.userName()}) }}">
+{{ user.userName }}</a>    
+ <br/>
+    {% endfor %}       
+<br/>
+<br/>
+Teacher's Panel
+<ul>
+<li><a href="{{ path('lecturer_add_announcement', {'classID' : app.session.get('classroomActive') }) }}"> Create announcement </a></li>
+<li><a href="{{ path('lecturer_create_lesson', {'classID' : app.session.get('classroomActive') }) }}"> Create lesson </a></li>
+
+</ul>
+Activity Center
+<ul>
+<li><a href="#"> Create Quiz </a></li>
+<li><a href="#"> Delete Quiz </a></li>
+<li><a href="#"> View Quiz </a></li>
+<li><a href="#"> Submissions</a> </li>
+<li><a href="{{ path('view_resources')}}"> Resources</a> </li>
+<li><a href="{{ path('set_collaboration_url') }}" onclick="window.open(&quot;http://scriblink.com&quot;);"> Facilitate class collaboration</a> -- Powered by Scriblink </li>
+</ul>
+
+<br/>
+{% for announcement in announcements %}
+     	  
+{{ announcement.announcementTitle }} 
+ <br/>
+ {{ announcement.announcementContent | raw }}
+    {% endfor %}      
+
+ <strong>LESSONS!</strong>
+ <br/>
+  {% for lesson in lessons %}
+ Title : 
+{% if is_granted('ROLE_USER')%}
+ <a href="{{ path('student_display_lesson', {'lessonID' : lesson.lessonID , 'classID' : app.session.get('classroomActive') } ) }}"> {{ lesson.lessonTitle }} </a>
+ {% elseif is_granted('ROLE_ADMIN') %}
+
+  <a href="{{ path('lecturer_display_lesson', {'lessonID' : lesson.lessonID , 'classID' : app.session.get('classroomActive') } ) }}"> {{ lesson.lessonTitle }} </a>
+
+ {% endif %}
+
+  -{{ lesson.lessonDesc }} 
+ 
+ <br/>
+ 
+ <br/>
+    {% endfor %}    
+
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "CloudPodClassroomBundle::layout.html.twig" %}
+
+{% block title "Symfony - Display Resources" %}
+
+{% block content %}
+<h1>Display File</h1>
+Resources <br> <br/>
+{% for resource in resources %}
+
+
+{{  resource.name }} <a href="{{ path('download', {'param': 'resource', 'param2': resource.resourceID }) }}"> Download - {{ resource.size | size }}
+</a>    
+ <br/>
+ <br/>
+{% endfor %}
+<a href="{{ path('upload_resource') }}"> Upload Resources 
+</a> 
+<hr/>
+Student Submissions
+{% endblock %}

@@ -1,0 +1,34 @@
+# src/CloudPod/ClassroomBundle/Resources/config/doctrine/Lessons.orm.yml
+CloudPod\ClassroomBundle\Entity\Lessons:
+  type:  entity
+  table: classroom_lessons
+  id:
+    lessonID:
+      column: lesson_id
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    lessonTitle:
+      column: lesson_title
+      type: string
+      length: 255
+      nullable: false
+    lessonDesc:
+      column: lesson_desc
+      type: text
+    lessonContent:
+      column: lesson_content
+      type: text
+    lessonCreatedAt:
+      column: lesson_created_At
+      type: datetime
+  oneToOne:
+    lessonFileID:
+      targetEntity: CloudPod\ClassroomBundle\Entity\LessonFileUpload
+      joinColumn:
+        name: fk_lesson_file_id
+        referencedColumnName: file_id
+  manyToMany:
+    lessonClass:
+      targetEntity: CloudPod\ClassroomBundle\Entity\Classroom
+      mappedBy: classLesson

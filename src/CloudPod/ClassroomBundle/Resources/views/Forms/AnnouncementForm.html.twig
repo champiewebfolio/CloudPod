@@ -1,0 +1,10 @@
+{% block content %}
+
+<form action="{{ path('lecturer_add_announcement', {'classID': classid }) }}" method="post"
+	{{ form_rest(form)}}
+
+
+<input type="submit" />
+</form>
+{{ tinymce_init() }}
+{% endblock %}
